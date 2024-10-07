@@ -1,21 +1,13 @@
 /** @format */
 
-import { PrismaClient } from '@prisma/client';
+import app from './app';
 
-const prisma = new PrismaClient();
+const port = process.env.PORT || 8080;
 
 async function main() {
-  const getAllUsers = await prisma.user.findMany();
-  console.log(getAllUsers);
-
-  //   const postUser = await prisma.user.create({
-  //     data: {
-  //       email: 'muhammadjiku364@gmail.com',
-  //       name: 'muhammad-jiku',
-  //       age: 25,
-  //     },
-  //   });
-  //   console.log(postUser);
+  app.listen(port, () => {
+    console.log(`Server listening on http://localhost:${port}`);
+  });
 }
 
 main();
