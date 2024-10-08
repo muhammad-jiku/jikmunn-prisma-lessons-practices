@@ -35,7 +35,42 @@ const createOrUpdateProfile = async (req: Request, res: Response) => {
   }
 };
 
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await UsersServices.getUsers();
+    res.status(200).json({
+      success: true,
+      data: result,
+      message: 'Users data retrieved successfully!',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      message: 'Something went wrong!',
+    });
+  }
+};
+
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const result = await UsersServices.getUser(Number(id));
+    res.status(200).json({
+      success: true,
+      data: result,
+      message: 'User data retrieved successfully!',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      message: 'Something went wrong!',
+    });
+  }
+};
+
 export const UsersControllers = {
   createUser,
   createOrUpdateProfile,
+  getUsers,
+  getUser,
 };
