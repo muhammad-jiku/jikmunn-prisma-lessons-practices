@@ -80,9 +80,33 @@ const deletePost = async (id: number): Promise<Post> => {
   return result;
 };
 
+const groupingAggregation = async () => {
+  // const result = await prisma.post.aggregate({
+  //   _avg: {
+  //     authorId: true,
+  //   },
+  //   _count: {
+  //     authorId: true,
+  //   },
+  //   _sum: {
+  //     categoryId: true,
+  //   },
+  // });
+
+  const result = await prisma.post.groupBy({
+    by: ['authorId'],
+    _count: {
+      authorId: true,
+    },
+  });
+
+  return result;
+};
+
 export const PostServices = {
   createPost,
   getPosts,
   updatePost,
   deletePost,
+  groupingAggregation,
 };

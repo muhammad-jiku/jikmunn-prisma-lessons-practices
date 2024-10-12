@@ -11,5 +11,6 @@ routes
   .route('/:id')
   .patch(PostControllers.updatePost)
   .delete(PostControllers.deletePost);
+routes.route('/group-and-aggregate').get(PostControllers.groupingAggregation);
 
 export const PostRoutes = routes;

@@ -73,9 +73,27 @@ const deletePost = async (req: Request, res: Response) => {
   }
 };
 
+const groupingAggregation = async (req: Request, res: Response) => {
+  try {
+    const result = await PostServices.groupingAggregation();
+
+    res.status(200).json({
+      success: true,
+      data: result,
+      message: 'Post grouped and aggregated successfully!',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      message: 'Something went wrong!',
+    });
+  }
+};
+
 export const PostControllers = {
   createPost,
   getPosts,
   updatePost,
   deletePost,
+  groupingAggregation,
 };
