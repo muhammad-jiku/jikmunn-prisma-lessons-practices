@@ -11,9 +11,10 @@ const createPost = async (data: Post): Promise<Post> => {
 };
 
 const getPosts = async (options: any) => {
-  const { sortBy, sortOrder, searchTerm, page = '1', limit = '10' } = options;
-  const skip = parseInt(limit) * parseInt(page) - parseInt(limit);
-  const take = parseInt(limit);
+  // const { sortBy, sortOrder, searchTerm, page = '1', limit = '10' } = options;
+  const { sortBy, sortOrder, searchTerm, page, limit } = options;
+  const skip = parseInt(limit) * parseInt(page) - parseInt(limit) || 0;
+  const take = parseInt(limit) || 10;
 
   return await prisma.$transaction(async (tx) => {
     const result = await tx.post.findMany({
@@ -71,8 +72,17 @@ const updatePost = async (
   return result;
 };
 
+const deletePost = async (id: number): Promise<Post> => {
+  const result = await prisma.post.delete({
+    where: { id },
+  });
+
+  return result;
+};
+
 export const PostServices = {
   createPost,
   getPosts,
   updatePost,
+  deletePost,
 };
