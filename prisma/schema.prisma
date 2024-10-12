@@ -13,6 +13,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// to create pull request from prisma database - npx prisma db pull
+// to make push request to prisma database - npx prisma db push
+
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
