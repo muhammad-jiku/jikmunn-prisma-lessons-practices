@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 const createUser = async (data: User): Promise<User> => {
   const result = await prisma.user.create({ data });
+
   return result;
 };
 
@@ -43,7 +44,7 @@ const getUser = async (id: number) => {
   return result;
 };
 
-export const UsersServices = {
+export const UserServices = {
   createUser,
   createOrUpdateProfile,
   getUsers,

@@ -1,13 +1,13 @@
 /** @format */
 
 import express from 'express';
-import { UsersControllers } from './users.controllers';
+import { UserControllers } from './users.controllers';
 
-const UsersRoutes = express.Router();
+const routes = express.Router();
 
-UsersRoutes.route('/create').post(UsersControllers.createUser);
-UsersRoutes.route('/profile').post(UsersControllers.createOrUpdateProfile);
-UsersRoutes.route('/').get(UsersControllers.getUsers);
-UsersRoutes.route('/:id').get(UsersControllers.getUser);
+routes.route('/create').post(UserControllers.createUser);
+routes.route('/profile').post(UserControllers.createOrUpdateProfile);
+routes.route('/').get(UserControllers.getUsers);
+routes.route('/:id').get(UserControllers.getUser);
 
-export default UsersRoutes;
+export const UserRoutes = routes;

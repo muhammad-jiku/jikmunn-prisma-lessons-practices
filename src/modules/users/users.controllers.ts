@@ -1,11 +1,11 @@
 /** @format */
 
 import { Request, Response } from 'express';
-import { UsersServices } from './users.services';
+import { UserServices } from './users.services';
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const result = await UsersServices.createUser(req.body);
+    const result = await UserServices.createUser(req.body);
     res.status(201).json({
       success: true,
       data: result,
@@ -21,7 +21,7 @@ const createUser = async (req: Request, res: Response) => {
 
 const createOrUpdateProfile = async (req: Request, res: Response) => {
   try {
-    const result = await UsersServices.createOrUpdateProfile(req.body);
+    const result = await UserServices.createOrUpdateProfile(req.body);
     res.status(200).json({
       success: true,
       data: result,
@@ -37,7 +37,7 @@ const createOrUpdateProfile = async (req: Request, res: Response) => {
 
 const getUsers = async (req: Request, res: Response) => {
   try {
-    const result = await UsersServices.getUsers();
+    const result = await UserServices.getUsers();
     res.status(200).json({
       success: true,
       data: result,
@@ -54,7 +54,7 @@ const getUsers = async (req: Request, res: Response) => {
 const getUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const result = await UsersServices.getUser(Number(id));
+    const result = await UserServices.getUser(Number(id));
     res.status(200).json({
       success: true,
       data: result,
@@ -68,7 +68,7 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const UsersControllers = {
+export const UserControllers = {
   createUser,
   createOrUpdateProfile,
   getUsers,
